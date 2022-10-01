@@ -304,22 +304,32 @@
 // Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment. Mongoose supports both promises and callbacks.
 // Schema forms a format for data validation
 // Model verifies schema and creates a connection between MongoDB and NodeJS
-const mongoose = require('mongoose');
 
-const main = async () => {
-    console.log("hello");
-    await mongoose.connect('mongodb://127.0.0.1:27017/e-comm');
-    console.log("hello");
-    const ProductSchema = new mongoose.Schema({
-        name : String
-    });
-    const ProductsModel = mongoose.model('products',ProductSchema);
-    let data = new ProductsModel({name:"m8"});
-    let result = await data.save();
-    console.log(result);
-}
+// const mongoose = require('mongoose');
+// // connecting mongoose module
 
-main();
+// const main = async () => {
+//     //connecting mongoose to mongodb
+//     await mongoose.connect('mongodb://127.0.0.1:27017/e-comm'); 
+//     // creating a schema of mongoose
+//     // THis schema only allows the data types mentioned to be entered inside the DB
+//     const ProductSchema = new mongoose.Schema({
+//         name : String,
+//         price : Number
+//     });
+//     // Creating a model 
+//     // Models are fancy constructors compiled from Schema definitions. 
+//     // An instance of a model is called a document. 
+//     // Models are responsible for creating and reading documents from the underlying MongoDB database.
+//     const ProductsModel = mongoose.model('products',ProductSchema);
+//     // Adding data of defined model
+//     let data = new ProductsModel({name:"m8",price:1000});
+//     // Saving data inside the DB.
+//     let result = await data.save();
+//     console.log(result);
+// }
+
+// main();
 
 
 
