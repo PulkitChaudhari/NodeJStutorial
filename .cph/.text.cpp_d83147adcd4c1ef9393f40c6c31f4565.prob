@@ -1,0 +1,1 @@
+{"name":"Local: text","url":"d:\\NodeJS\\text.cpp","tests":[{"id":1662458411839,"input":"11994 11995","output":"685385528"},{"id":1662458614600,"input":"87532 32150","output":"165162987"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\NodeJS\\text.cpp","group":"local","local":true}
