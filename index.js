@@ -331,6 +331,71 @@
 
 // main();
 
+// CRUD OPERATION WITH MONGOOSE
+// const mongoose = require('mongoose');
+
+// mongoose.connect('mongodb://127.0.0.1:27017/e-comm'); 
+
+// const productSchema = new mongoose.Schema({
+//     name : String,
+//     price : Number
+// })
+
+// const saveInDB = async () => {
+//     const Product = mongoose.model('products',productSchema);
+//     let data = new Product({name:"max 131",price :200,brand:"redmi",category:'Mobile'});
+//     const result = await data.save();
+//     console.log(result);
+// }
+
+// // saveInDB();
+
+// const updateInDB = async () => {
+//     const Product = mongoose.model('products',productSchema);
+//     let data = await Product.updateOne(
+//         {name:"max 131"},
+//         {$set:{price:700,name:"max 69"}}
+//     )
+//     console.log(data);
+// }
+ 
+// // updateInDB();
+
+// const deleteinDB = async () => {
+//     const Product = mongoose.model('products',productSchema);
+//     let data = await Product.deleteOne({name:'max 69'});
+//     console.log(data);
+// }
+
+// // deleteinDB();
+
+// const findInDB = async () => {
+//     const Product = mongoose.model('products',productSchema);
+//     let data = await Product.find({name:"m8"});
+//     console.log(data);
+// }
+
+// findInDB();
+
+// POST API in MongoDB
+// see product.js and config.js
+const express = require('express');
+require('./config');
+const Product = require('./product');
+const app = express();
+app.use(express.json());
+app.post("/create",async (req,resp)=>{
+    resp.send("Done");
+    let data = new Product(req.body);
+    const result = await data.save();
+    console.log(result);
+});
+app.listen(4500);
+
+
+
+
+
 
 
 
