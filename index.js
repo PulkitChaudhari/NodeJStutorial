@@ -379,44 +379,143 @@
 
 // POST API in MongoDB
 // see product.js and config.js
-const express = require('express');
-require('./config');
-const Product = require('./product');
-const app = express();
-app.use(express.json());
-app.post("/create",async (req,resp)=>{
-    resp.send("Done");
-    let data = new Product(req.body);
-    const result = await data.save();
-    console.log(result);
-});
-app.get("/list",async (req,resp)=>{
-    let data = await Product.find(); 
-    resp.send(data);
 
-})
-app.delete("/delete/:_id",async (req,resp)=>{
-    let data = await Product.deleteOne(req.params); 
-    resp.send(data);
-})
-app.put("/update/:_id",async (req,resp)=>{
-    let data = await Product.updateOne(
-        req.params,
-        {$set:req.body});
-        resp.send("done");
-})
-app.get("/search/:key",async(req,resp)=>{
-    console.log(req.params.key);
-    let data = await Product.find({
-        "$or":[{"name":{$regex:req.params.key}},
-        {"brand":{$regex:req.params.key}},
-        {"category":{$regex:req.params.key}}
-    ]
-    });
-    console.log(data);
-    resp.send(data);
-})
-app.listen(4500);
+// const express = require('express');
+// require('./config');
+// const Product = require('./product');
+// const app = express();
+// app.use(express.json());
+// app.post("/create",async (req,resp)=>{
+//     resp.send("Done");
+//     let data = new Product(req.body);
+//     const result = await data.save();
+//     console.log(result);
+// });
+// app.get("/list",async (req,resp)=>{
+//     let data = await Product.find(); 
+//     resp.send(data);
+
+// })
+// app.delete("/delete/:_id",async (req,resp)=>{
+//     let data = await Product.deleteOne(req.params); 
+//     resp.send(data);
+// })
+// app.put("/update/:_id",async (req,resp)=>{
+//     let data = await Product.updateOne(
+//         req.params,
+//         {$set:req.body});
+//         resp.send("done");
+// })
+// app.get("/search/:key",async(req,resp)=>{
+//     console.log(req.params.key);
+//     let data = await Product.find({
+//         "$or":[{"name":{$regex:req.params.key}},
+//         {"brand":{$regex:req.params.key}},
+//         {"category":{$regex:req.params.key}}
+//     ]
+//     });
+//     console.log(data);
+//     resp.send(data);
+// })
+
+
+
+// app.listen(4500);
+
+//  UPLOAD FILE IN NODEJS
+// const express = require('express');
+// const multer = require('multer');
+// const app = express();
+// const upload = multer({
+//     storage:multer.diskStorage({
+//         destination:function(req,file,callback){
+//             callback(null,"uploads")
+//         },
+//         filename:function(req,file,callback){
+//             callback(null,file.fieldname+"-"+Date.now+".jpg");
+//         }
+//     })
+// }).single("user_file");
+// app.post("/upload",upload,(req,resp)=>{
+//     resp.send("file upload");
+// });
+// app.listen(4500);
+
+// OS MODULE IN NODEJS
+
+// const os = require('os');
+// // shows architecture of the machine in use
+// console.log(os.arch());
+// // shows ram free in machine
+// console.log(os.freemem()/(1024*1024*1024));
+// // shows total memory
+// console.log(os.totalmem()/(1024*1024*1024));
+// // shows hostname
+// console.log(os.hostname());
+// // shows platform being used by device like mac or windows
+// console.log(os.platform());
+// // shows userinfo
+// console.log(os.userInfo());
+
+// Events and Event emmiter in NodeJS
+
+// const express = require('express');
+// // here event emitter is written in Caps because it is a class.
+// const EventEmitter = require('events');
+// const event = new EventEmitter();
+// let count = 0;
+// const app = express();
+// // event is triggered here when home link is called by the event.emit function
+// // this is catched by event.on function which executes the code inside the function block
+// event.on("countAPI",()=>{
+//     count++;
+//     console.log(count);
+// })
+
+// app.get("/",(req,resp)=>{
+//     resp.send("API called");
+//     event.emit("countAPI");
+// })
+
+// app.get("/search",(req,resp)=>{
+//     resp.send("search API called");
+//     console.log("hello event called");
+//     event.emit("countAPI");
+
+// })
+// app.get("/update",(req,resp)=>{
+//     resp.send("update API called");
+//     console.log("hello event called");
+//     event.emit("countAPI");
+
+// })
+// app.listen(4500);
+
+// REPL - Read-Eval-Print-Loop
+// cmd based nothing here :)
+
+// How to connect MySQL in NodeJS
+// const mysql = require('mysql');
+// const conn = mysql.createConnection({
+//     host:'localhost',
+//     user:"root",
+//     password:"pulkit",
+//     database:"test"
+// });
+// conn.connect((err)=>{
+//     if (err) console.log(err);
+//     else console.log("all ok");
+// });
+
+// conn.query("select * from temptable",(err,result)=>{
+//     console.warn("result",result);
+// });
+
+// conn.query("create table temptable",(err,result)=>{
+//     console.warn("result",result);
+// });
+
+
 
 
 
