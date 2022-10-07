@@ -384,6 +384,7 @@
 // require('./config');
 // const Product = require('./product');
 // const app = express();
+// We add express.json statement to convert incoming data to JSON format
 // app.use(express.json());
 // app.post("/create",async (req,resp)=>{
 //     resp.send("Done");
@@ -514,6 +515,68 @@
 // conn.query("create table temptable",(err,result)=>{
 //     console.warn("result",result);
 // });
+// conn.query("use test",(err,result)=>{
+//     console.warn("result",result);
+// });
+// conn.query("select * from user_tables",(err,result)=>{
+//     console.warn("result : ",result);
+// });
+// conn.query("create table temp (t_id int,t_name varchar(40))",(err,result)=>{
+//     console.warn("result",result);
+// });
+// conn.query("insert into temptable values (2,'glokelov');",(err,result)=>{
+//     console.warn("result",result);
+// });
+// conn.query("select * from temptable;",(err,result)=>{
+//     console.warn("result",result);
+// });
+
+// GET,POST API with MySQL
+
+const { application } = require('express');
+const express = require('express');
+const con = require('./config');
+const app = express();
+
+app.get("/",(req,resp)=>{
+    con.query("select * from temptable;",(err,result)=>{
+        if (err) console.log("error ocurred");
+        else console.log("func chal gaya");
+        resp.send(result);
+    })
+});
+app.use(express.json());
+app.post("/",(req,resp)=>{
+    console.log(req.body);
+    con.query('INSERT INTO temptable SET ?',req.body,(err,result,fields)=>{
+        if (err) console.log(err);
+        else console.log("func chal gaya");
+        resp.send("kardiya bhai");
+    })
+});
+
+app.put("/",(req,resp)=>{
+    id = req.body.t_id;
+    names = req.body.t_name;
+    console.log(id,names);
+    con.query('UPDATE temptable SET t_id = ?, t_name = ? where t_id = ?',[id,names,3],(err,result,fields)=>{
+        if (err) console.log(err);
+        else console.log("func chal gaya");
+        resp.send("kardiya bhai");
+    })
+})
+
+app.delete("/",(req,resp)=>{
+    console.log(req.body);
+    con.query('DELETE FROM temptable WHERE t_id = '+req.body.t_id,(err,result,fields)=>{
+        if (err) console.log(err);
+        else console.log("func chal gaya");
+        resp.send("kardiya bhai");
+    })
+})
+
+
+app.listen(4500);
 
 
 
